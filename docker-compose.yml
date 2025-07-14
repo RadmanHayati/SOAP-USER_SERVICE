@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  postgres-user:
+    container_name: postgres-user
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: user-service
+      POSTGRES_USER: radman
+      POSTGRES_PASSWORD: password
+      POSTGRES_HOST_AUTH_METHOD: md5
+    volumes:
+      - postgres-user-data:/var/lib/postgresql/data
+    ports:
+      - "5431:5431"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U radman -d user-service -p 5431"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    command: postgres -p 5431
+    restart: unless-stopped
+
+  user-service:
+    container_name: user-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-user:5431/user-service?connectTimeout=5&socketTimeout=5
+      SPRING_DATASOURCE_USERNAME: radman
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL-AUTO: update
+      SPRING_LIQUIBASE_ENABLED: "false"
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres-user:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  postgres-user-data:
