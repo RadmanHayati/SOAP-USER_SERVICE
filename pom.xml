@@ -19,9 +19,10 @@
 	<properties>
 		<java.version>17</java.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
-		<lombok.version>1.18.28</lombok.version>
+		<lombok.version>1.18.30</lombok.version>
 		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
-		<springdoc.version>1.6.9</springdoc.version>
+		<springdoc.version>2.1.0</springdoc.version>
+		<jaxb.version>4.0.2</jaxb.version>
 	</properties>
 
 	<dependencies>
@@ -37,34 +38,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
-		</dependency>
-
-		<!-- For WSDL generation -->
-		<dependency>
-			<groupId>wsdl4j</groupId>
-			<artifactId>wsdl4j</artifactId>
-		</dependency>
-
-		<!-- JAXB API (Jakarta EE 9+) -->
-		<dependency>
-			<groupId>jakarta.xml.bind</groupId>
-			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>4.0.0</version>
-		</dependency>
-
-		<!-- JAXB Runtime -->
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>4.0.2</version>
-		</dependency>
-
-		<!-- For XJC (XML Schema to Java compiler) -->
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-xjc</artifactId>
-			<version>4.0.2</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<!-- Database -->
@@ -97,6 +70,23 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- JAXB -->
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>${jaxb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>${jaxb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+
 		<!-- Monitoring -->
 		<dependency>
 			<groupId>io.micrometer</groupId>
@@ -106,7 +96,7 @@
 		<!-- Documentation -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${springdoc.version}</version>
 		</dependency>
 
@@ -115,6 +105,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -174,32 +170,36 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jaxb2-maven-plugin</artifactId>
 				<version>3.1.0</version>
-				<dependencies>
-					<dependency>
-						<groupId>org.glassfish.jaxb</groupId>
-						<artifactId>jaxb-xjc</artifactId>
-						<version>4.0.2</version>
-					</dependency>
-				</dependencies>
-	<!--			<executions>
+				<executions>
 					<execution>
 						<id>xjc</id>
 						<goals>
 							<goal>xjc</goal>
 						</goals>
+						<phase>generate-sources</phase>
 					</execution>
 				</executions>
 				<configuration>
 					<sources>
 						<source>${project.basedir}/src/main/resources/wsdl/users.xsd</source>
 					</sources>
-					<packageName>com.example.userservice.soap.generated</packageName>
-					<outputDirectory>${project.basedir}/target/generated-sources/xjc</outputDirectory>
-				</configuration>-->
+					<packageName>com.radmanhayati.user.soap.generated</packageName>
+					<outputDirectory>${project.build.directory}/generated-sources/xjc</outputDirectory>
+					<clearOutputDir>false</clearOutputDir>
+					<verbose>true</verbose>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.glassfish.jaxb</groupId>
+						<artifactId>jaxb-xjc</artifactId>
+						<version>${jaxb.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
