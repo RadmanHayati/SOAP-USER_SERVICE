@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public abstract class RegisterUserRequest extends RequestService {
+public class RegisterUserRequest extends RequestService {
 
 	@NotBlank
 	private String name;
