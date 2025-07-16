@@ -30,7 +30,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-user:5431/user-service?connectTimeout=5&socketTimeout=5
       SPRING_DATASOURCE_USERNAME: radman
       SPRING_DATASOURCE_PASSWORD: password
-      SPRING_JPA_HIBERNATE_DDL-AUTO: create-drop
+      SPRING_JPA_HIBERNATE_DDL-AUTO: update
       SPRING_LIQUIBASE_ENABLED: "false"
     ports:
       - "8080:8080"
