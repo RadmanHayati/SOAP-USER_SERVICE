@@ -147,4 +147,6 @@ This project illustrates a scalable and clean microservices architecture using m
 ---
 
 **Sincerely Radman Hayati**
-
+<img width="1728" height="1117" alt="Screenshot 2025-07-17 at 5 15 45 AM" src="https://github.com/user-attachments/assets/07025255-1bf2-49c4-be37-faafc4279d38" />
+<img width="1728" height="1117" alt="Screenshot 2025-07-17 at 5 16 14 AM" src="https://github.com/user-attachments/assets/13801651-7eb2-48e8-b9e4-63ca8cd43280" />
+<img width="1728" height="1117" alt="Screenshot 2025-07-17 at 5 17 01 AM" src="https://github.com/user-attachments/assets/831425dd-71f2-4d01-9ae7-ac1a1c1bb8b5" />
