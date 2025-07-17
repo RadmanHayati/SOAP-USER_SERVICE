@@ -5,9 +5,11 @@
 
 ---
 
-### Project Overview
+### 📌 Project Overview
 
-This project demonstrates a modular architecture with two Spring Boot microservices that communicate using SOAP protocol. The services encapsulate independent responsibilities and are built using modern development practices and containerized infrastructure. This setup is designed to simulate a real-world service communication layer in a microservices environment.
+This project demonstrates a modular architecture with two Spring Boot microservices that communicate using the SOAP protocol. The services encapsulate independent responsibilities and are built using modern development practices and containerized infrastructure. This setup is designed to simulate a real-world service communication layer in a microservices environment.
+
+> **🔀 Note:** The project is currently maintained on the `**staging**` branch.
 
 ---
 
@@ -147,6 +149,4 @@ This project illustrates a scalable and clean microservices architecture using m
 ---
 
 **Sincerely Radman Hayati**
-<img width="1728" height="1117" alt="Screenshot 2025-07-17 at 5 15 45 AM" src="https://github.com/user-attachments/assets/07025255-1bf2-49c4-be37-faafc4279d38" />
-<img width="1728" height="1117" alt="Screenshot 2025-07-17 at 5 16 14 AM" src="https://github.com/user-attachments/assets/13801651-7eb2-48e8-b9e4-63ca8cd43280" />
-<img width="1728" height="1117" alt="Screenshot 2025-07-17 at 5 17 01 AM" src="https://github.com/user-attachments/assets/831425dd-71f2-4d01-9ae7-ac1a1c1bb8b5" />
+<div align="center"> <table> <tr> <td align="center"> <strong>Microservices</strong><br/> <img src="https://github.com/user-attachments/assets/07025255-1bf2-49c4-be37-faafc4279d38" alt="User Service Swagger UI" width="800"/> </td> </tr> <tr> <td align="center"> <strong>Swagger UI</strong><br/> <img src="https://github.com/user-attachments/assets/13801651-7eb2-48e8-b9e4-63ca8cd43280" alt="Profile Service Swagger UI" width="800"/> </td> </tr> <tr> <td align="center"> <strong>WSDL XSD Files</strong><br/> <img src="https://github.com/user-attachments/assets/831425dd-71f2-4d01-9ae7-ac1a1c1bb8b5" alt="Container logs" width="800"/> </td> </tr> </table> </div>
