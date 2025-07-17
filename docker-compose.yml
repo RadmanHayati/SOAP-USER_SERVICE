@@ -21,28 +21,5 @@ services:
     command: postgres -p 5431
     restart: unless-stopped
 
-  user-service:
-    container_name: user-service
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-user:5431/user-service?connectTimeout=5&socketTimeout=5
-      SPRING_DATASOURCE_USERNAME: radman
-      SPRING_DATASOURCE_PASSWORD: password
-      SPRING_JPA_HIBERNATE_DDL-AUTO: update
-      SPRING_LIQUIBASE_ENABLED: "false"
-    ports:
-      - "8080:8080"
-    depends_on:
-      postgres-user:
-        condition: service_healthy
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
 volumes:
   postgres-user-data:
